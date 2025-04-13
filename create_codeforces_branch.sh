@@ -157,24 +157,27 @@ else
     file_name="codeforces${round_number}_${divisions_result}_${competition_type}${round_number}_${divisions_result}"
 fi
 
+# Definir la estructura de carpetas
+folder_path="${competition_type}/Round${round_number}"
+
 # Copiar la plantilla y crear el archivo de información
 if [ -f "competencia_info_template.md" ]; then
     # Asegurarse de que la carpeta existe
-    mkdir -p "${competition_type}"
+    mkdir -p "${folder_path}"
     
     # Crear el archivo de información
-    cp "competencia_info_template.md" "${competition_type}/${file_name}.md"
+    cp "competencia_info_template.md" "${folder_path}/${file_name}.md"
     
     # Personalizar el archivo con los datos de la competencia
-    sed -i "s/\[Número de Ronda\]/${round_number}/g" "${competition_type}/${file_name}.md"
+    sed -i "s/\[Número de Ronda\]/${round_number}/g" "${folder_path}/${file_name}.md"
     
     if [ "$divisions_result" == "Sin_division" ]; then
-        sed -i "s/\[División\]//g" "${competition_type}/${file_name}.md"
+        sed -i "s/\[División\]//g" "${folder_path}/${file_name}.md"
     else
-        sed -i "s/\[División\]/${divisions_result}/g" "${competition_type}/${file_name}.md"
+        sed -i "s/\[División\]/${divisions_result}/g" "${folder_path}/${file_name}.md"
     fi
     
-    echo "Archivo de información creado: ${competition_type}/${file_name}.md"
+    echo "Archivo de información creado: ${folder_path}/${file_name}.md"
 else
     echo "Error: No se encontró la plantilla 'competencia_info_template.md'"
 fi
@@ -187,7 +190,7 @@ echo "Para crear y cambiar a la nueva rama, ejecuta:"
 echo "git checkout -b \"$branch_name\""
 echo
 echo "El archivo de información ha sido creado en:"
-echo "${competition_type}/${file_name}.md"
+echo "${folder_path}/${file_name}.md"
 echo
 echo "==================================="
 echo "       INFORMACIÓN DE RAMA        "
@@ -197,6 +200,6 @@ echo "Nombre de la rama:"
 echo "$branch_name"
 echo
 echo "Archivo de información:"
-echo "${competition_type}/${file_name}.md"
+echo "${folder_path}/${file_name}.md"
 echo
 echo "==================================="
