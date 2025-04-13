@@ -148,34 +148,55 @@ select_divisions() {
 # Capturar las divisiones
 select_divisions
 # Las divisiones ahora están en la variable $divisions_result
-
-# Formatear el nombre de la rama (usando guiones en lugar de barras)
+# Formatear el nombre de la rama y del archivo de información
 if [ "$divisions_result" == "Sin_division" ]; then
-    branch_name="${competition_type}-Round_${round_number}"
-    folder_structure="${competition_type}/Round_${round_number}"
+    branch_name="${competition_type}_Round${round_number}"
+    file_name="codeforces${round_number}_${competition_type}${round_number}"
 else
-    branch_name="${competition_type}-Round_${round_number}_${divisions_result}"
-    folder_structure="${competition_type}/Round_${round_number}"
+    branch_name="${competition_type}_Round${round_number}_${divisions_result}"
+    file_name="codeforces${round_number}_${divisions_result}_${competition_type}${round_number}_${divisions_result}"
+fi
+
+# Copiar la plantilla y crear el archivo de información
+if [ -f "competencia_info_template.md" ]; then
+    # Asegurarse de que la carpeta existe
+    mkdir -p "${competition_type}"
+    
+    # Crear el archivo de información
+    cp "competencia_info_template.md" "${competition_type}/${file_name}.md"
+    
+    # Personalizar el archivo con los datos de la competencia
+    sed -i "s/\[Número de Ronda\]/${round_number}/g" "${competition_type}/${file_name}.md"
+    
+    if [ "$divisions_result" == "Sin_division" ]; then
+        sed -i "s/\[División\]//g" "${competition_type}/${file_name}.md"
+    else
+        sed -i "s/\[División\]/${divisions_result}/g" "${competition_type}/${file_name}.md"
+    fi
+    
+    echo "Archivo de información creado: ${competition_type}/${file_name}.md"
+else
+    echo "Error: No se encontró la plantilla 'competencia_info_template.md'"
 fi
 
 echo "==================================="
 echo "     COMANDOS A EJECUTAR          "
 echo "==================================="
 echo
-echo "Para crear la estructura de carpetas, ejecuta:"
-echo "mkdir -p \"$folder_structure\""
-echo
 echo "Para crear y cambiar a la nueva rama, ejecuta:"
 echo "git checkout -b \"$branch_name\""
+echo
+echo "El archivo de información ha sido creado en:"
+echo "${competition_type}/${file_name}.md"
 echo
 echo "==================================="
 echo "       INFORMACIÓN DE RAMA        "
 echo "==================================="
 echo
-echo "Crea la rama:"
-echo "git checkout -b \"$branch_name\""
+echo "Nombre de la rama:"
+echo "$branch_name"
 echo
-echo crea la carpeta con el comando:
-echo "mkdir -p \"$folder_structure\""
+echo "Archivo de información:"
+echo "${competition_type}/${file_name}.md"
 echo
 echo "==================================="
