@@ -1,0 +1,33 @@
+# Codeforces Round 964 (Div. 4)
+
+## Datos Generales
+- **Nombre de la Competencia**: Codeforces Round 964 (Div. 4)
+- **Ronda**: Round 964
+- **Fecha**: [06/08/2024] 
+- **Enlace**: [https://codeforces.com/contest/1999]
+- **División**: [Div. 4]
+
+## Problemas
+
+| Problema | Nombre                | Dificultad | Categoría | Estado | Solución              |
+|----------|-----------------------|------------|-----------|--------|-----------------------|
+| A        | A+B Again?            | 800        | *Math     | ✅     | [Solución](./A_a+b.py)   |
+| B        | Card Game             | 1000       | *brute force  | ❌     |  |
+| C        | Showering             | 800        | *greedy    |      |  |
+| D        | Slavic's Exam         | 1100       | *greedy      |      |  |
+| E        | Triple Operations     | 1300       | *dp   |      |  |
+| F        | Expected Median       | 1500       | *combinatorics     |      |  |
+| G1       | Ruler (easy version)  | 1500       | *binary search |      |  |
+| G2       | Ruler (hard version)  | 1700       | *ternary search|      |  |
+
+## Resumen de la Competencia
+Solo pude resolver uno de los problemas, el problema A, que era bastante sencillo. Los demás problemas eran más complicados y no pude encontrar la solución a tiempo. Me gustaría mejorar mi habilidad en problemas de tipo greedy y dp.
+
+## Estadísticas
+- **Posición Final**: 32592	
+- **Problemas Resueltos**: 1
+- **Puntuación Total**: 
+
+## Lecciones Aprendidas
+
+## Recursos Útiles
